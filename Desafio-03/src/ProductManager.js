@@ -1,7 +1,6 @@
-//const fs = require('fs');
 import * as fs from 'fs';
 
-export default class ProductManager {
+class ProductManager {
 
     #id = 0;
 
@@ -196,57 +195,58 @@ const test = async () => {
             code: 'qq99',
             stock: 60
         });
-        await productManager.addProduct({
-
-            title: 'Aceite',
-            description: 'Producto prueba',
-            price: 550,
-            thumbnail: 'Sin imagen',
-            code: 'zxc9',
-            stock: 60
-        });
 
         await productManager.addProduct({
 
             title: 'Dulce de Leche',
             description: 'Producto prueba',
-            price: 330,
+            price: 250,
             thumbnail: 'Sin imagen',
-            code: 'mm12',
+            code: 'aa20',
+            stock: 35
+        });
+
+        await productManager.addProduct({
+
+            title: 'Café Instantáneo',
+            description: 'Producto prueba',
+            price: 600,
+            thumbnail: 'Sin imagen',
+            code: 'cx99',
             stock: 50
         });
 
         await productManager.addProduct({
 
-            title: 'Leche Descremada',
+            title: 'Queso Untable',
             description: 'Producto prueba',
-            price: 400,
+            price: 350,
             thumbnail: 'Sin imagen',
-            code: 'fff22',
+            code: 'pq12',
             stock: 40
-        });
-
-        await productManager.addProduct({
-
-            title: 'Pan Lactal',
-            description: 'Producto prueba',
-            price: 260,
-            thumbnail: 'Sin imagen',
-            code: 'rr377',
-            stock: 50
         });
 
         await productManager.addProduct({
 
             title: 'Semillas Pipa',
             description: 'Producto prueba',
-            price: 120,
+            price: 200,
             thumbnail: 'Sin imagen',
-            code: 'op59',
+            code: 'xv74',
+            stock: 50
+        });
+
+        await productManager.addProduct({
+
+            title: 'Leche en Polvo',
+            description: 'Producto prueba',
+            price: 900,
+            thumbnail: 'Sin imagen',
+            code: 'ty10',
             stock: 60
         });
 
-        //console.log(await productManager.getProducts());
+        console.log(await productManager.getProducts());
 
         //await productManager.getProductById(3);
 
@@ -268,4 +268,6 @@ const test = async () => {
     }
 }
 
-//test();
+export default ProductManager;
+
+test();
