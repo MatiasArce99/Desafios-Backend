@@ -6,9 +6,16 @@ class ProductManager {
 
     constructor(path) {
 
+        /*this.path = path;
+        this.producto = [];
+        fs.promises.writeFile(this.path, JSON.stringify(this.producto));*/
         this.path = path;
         this.producto = [];
-        fs.promises.writeFile(this.path, JSON.stringify(this.producto));
+
+        if (!fs.existsSync(this.path)) {
+
+            fs.writeFileSync(this.path, JSON.stringify(this.producto));
+        }
     }
 
     #getId() {
@@ -68,7 +75,7 @@ class ProductManager {
             let productoIndex = await this.getProducts();
             let filtrado = productoIndex.find((pro) => pro.id === idProducto); //Find busque elemento
 
-            if (filtrado === undefined) {
+            /*if (filtrado === undefined) {
 
                 console.log('Error. El producto no existe');
 
@@ -76,9 +83,8 @@ class ProductManager {
 
                 console.log(`Producto con id ${idProducto}\n`);
                 console.log(filtrado);
-            }
-
-
+            }*/
+            return filtrado;
 
         } catch (error) {
 
@@ -138,7 +144,7 @@ class ProductManager {
     }
 };
 
-const productManager = new ProductManager('./productos.json');
+//const productManager = new ProductManager('./productos.json');
 
 const test = async () => {
 
@@ -246,7 +252,7 @@ const test = async () => {
             stock: 60
         });
 
-        console.log(await productManager.getProducts());
+        //console.log(await productManager.getProducts());
 
         //await productManager.getProductById(3);
 
@@ -270,4 +276,4 @@ const test = async () => {
 
 export default ProductManager;
 
-test();
+//test();
