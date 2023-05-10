@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import ProductManager from '../models/ProductManager.js'
+import ProductManager from '../ProductManager.js';
 
-const pm = new ProductManager('../productos.json');
+const pm = new ProductManager();
 const productRouter = Router();
 
 productRouter.get('/', async (req, res) => {
@@ -15,8 +15,7 @@ productRouter.get('/', async (req, res) => {
 
     } else {
 
-        res.send(listado);
-        //console.log(listado);
+        res.send({listado});
 
     }
 
@@ -25,12 +24,12 @@ productRouter.get('/', async (req, res) => {
 productRouter.get('/:id', async (req, res) => {
 
     try {
-        
+
         let productoEncontrado = await pm.getProductById(parseInt(req.params.id));
 
-        if(productoEncontrado != undefined){
+        if (productoEncontrado != undefined) {
 
-            res.send(productoEncontrado);
+            res.send({productoEncontrado});
 
         } else {
 
@@ -39,50 +38,50 @@ productRouter.get('/:id', async (req, res) => {
         }
 
     } catch (error) {
-        
+
         res.status(400).send(`Hubo un error al encontrar el ID ${error}`);
     }
 });
 
-productRouter.post('/', async (req,res) => {
-    
+productRouter.post('/', async (req, res) => {
+
     try {
-        
+
         let nuevoProducto = req.body;
         res.send(await pm.addProduct(nuevoProducto));
 
     } catch (error) {
-        
+
         res.status(400).send(`${error}`);
 
     }
 });
 
-productRouter.put('/:id', async (req,res) => {
+productRouter.put('/:id', async (req, res) => {
 
     try {
-        
+
         let pid = req.params.id;
         let nuevoProducto = req.body;
 
         res.send(await pm.updateProduct(pid, nuevoProducto));
 
     } catch (error) {
-        
+
         res.status(400).send(`${error}`);
 
     }
 });
 
-productRouter.delete('/:id', async (req,res) => {
+productRouter.delete('/:id', async (req, res) => {
 
     try {
-        
+
         let pid = req.params.id;
         res.send(await pm.deleteProduct(pid));
 
     } catch (error) {
-        
+
         res.status(400).send(`${error}`);
     }
 });

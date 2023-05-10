@@ -72,15 +72,6 @@
         "id": 8
     },
     {
-        "title": "Semillas Pipa",
-        "description": "Producto prueba",
-        "price": 200,
-        "thumbnail": "Sin imagen",
-        "code": "xv74",
-        "stock": 50,
-        "id": 9
-    },
-    {
         "title": "Leche en Polvo",
         "description": "Producto prueba",
         "price": 900,
@@ -88,5 +79,24 @@
         "code": "ty10",
         "stock": 60,
         "id": 10
+    },
+    {
+        "title": "Café Tostado",
+        "description": "Producto prueba",
+        "code": "vv123",
+        "price": 1500,
+        "status": "True",
+        "stock": 10,
+        "category": "Bebibles",
+        "thumbnails": "sin imagen"
+    },
+    {
+        "title": "Semillas Pipa",
+        "description": "Producto prueba",
+        "price": 200,
+        "thumbnail": "Sin imagen",
+        "code": "xv74",
+        "stock": 50,
+        "id": 9
     }
 ]

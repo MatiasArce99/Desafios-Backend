@@ -1,21 +1,22 @@
 import * as fs from 'fs';
+//import { nanoid } from 'nanoid';
 
 class ProductManager {
 
     #id = 0;
 
-    constructor(path) {
+    constructor() {
 
         /*this.path = path;
         this.producto = [];
         fs.promises.writeFile(this.path, JSON.stringify(this.producto));*/
-        this.path = path;
-        this.producto = [];
+        this.path = './src/productos.json';
+        //this.producto = [];
 
-        if (!fs.existsSync(this.path)) {
+        /*if (!fs.existsSync(this.path)) {
 
             fs.writeFileSync(this.path, JSON.stringify(this.producto));
-        }
+        }*/
     }
 
     #getId() {
@@ -25,6 +26,28 @@ class ProductManager {
     }
 
     async addProduct(producto) {
+
+        try {
+
+            const productosActuales = await this.getProducts();
+            /*let nuevoId = 0;
+
+            if (productosActuales.length > 0) {
+
+                const oldProducts = productosActuales[productosActuales.length - 1];
+                nuevoId = oldProducts.id + 1;
+            }*/
+
+            const nuevoProducto = [ ...productosActuales, producto ];
+            //productosActuales.push(nuevoProducto);
+            await fs.promises.writeFile(this.path, JSON.stringify(nuevoProducto));
+
+        } catch (error) {
+
+        }
+    }
+
+    /*async addProduct(producto) {
 
         try {
 
@@ -53,7 +76,7 @@ class ProductManager {
 
             console.log(`${error}`);
         }
-    }
+    }*/
 
     async getProducts() {
 
@@ -105,8 +128,8 @@ class ProductManager {
 
                 productList[productoModificar] = { ...producto, id };
                 await fs.promises.writeFile(this.path, JSON.stringify(productList));
-                console.log('Listado Actualizado\n');
-                console.log(productList);
+                //console.log('Listado Actualizado\n');
+                //console.log(productList);
 
             } else {
 
@@ -127,7 +150,7 @@ class ProductManager {
             let filtrado = productoIndex.filter((pro) => pro.id != idProducto); //Filter devuelve array de elementos
             await fs.promises.writeFile(this.path, JSON.stringify(filtrado));
 
-            if (filtrado === undefined) {
+            /*if (filtrado === undefined) {
 
                 console.log('Error. El producto no existe');
 
@@ -135,7 +158,7 @@ class ProductManager {
 
                 console.log(`Se elimina producto con id ${idProducto} \n`);
                 console.log(filtrado);
-            }
+            }*/
 
         } catch (error) {
 
@@ -144,13 +167,13 @@ class ProductManager {
     }
 };
 
-const productManager = new ProductManager('./productos.json');
+//const productManager = new ProductManager('./productos.json');
 
-const test = async () => {
+/*const test = async () => {
 
     //console.log(await productManager.getProducts());
 
-    try {
+    /*try {
 
         await productManager.addProduct({
 
@@ -250,29 +273,29 @@ const test = async () => {
             thumbnail: 'Sin imagen',
             code: 'ty10',
             stock: 60
-        });
-
-        //console.log(await productManager.getProducts());
-
-        //await productManager.getProductById(3);
-
-        /*await productManager.updateProduct(2, {
-
-            title: 'Coca Cola',
-            description: 'Producto prueba',
-            price: 1000,
-            thumbnail: 'Sin imagen',
-            code: 'cc111',
-            stock: 50
         });*/
 
-        //await productManager.deleteProduct(4);
+//console.log(await productManager.getProducts());
 
-    } catch (error) {
+//await productManager.getProductById(3);
 
-        console.log('Algo salió mal');
-    }
+/*await productManager.updateProduct(2, {
+
+    title: 'Coca Cola',
+    description: 'Producto prueba',
+    price: 1000,
+    thumbnail: 'Sin imagen',
+    code: 'cc111',
+    stock: 50
+});
+
+//await productManager.deleteProduct(4);
+
+} catch (error) {
+
+console.log('Algo salió mal');
 }
+}*/
 
 export default ProductManager;
 
