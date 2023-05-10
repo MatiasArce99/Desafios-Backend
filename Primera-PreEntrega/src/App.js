@@ -1,12 +1,13 @@
 import express from 'express';
-import ProductManager from './ProductManager.js';
+//import ProductManager from './ProductManager.js';
 import { productRouter } from './routers/Product.Router.js';
 
-const pm = new ProductManager('./productos.json')
+//const pm = new ProductManager('./productos.json')
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api/products/', productRouter);
 
 app.listen(8080, () => {
 
@@ -14,7 +15,7 @@ app.listen(8080, () => {
 
 });
 
-/*app.get('/products', async (req, res) => {
+/*app.get('/api/products', async (req, res) => {
 
     let listado = await pm.getProducts();
     let limite = req.query.limit;
@@ -51,6 +52,4 @@ app.listen(8080, () => {
         res.status(400).send(`Hubo un error al encontrar el ID ${error}`);
 
     }
-})*/
-
-app.use('/api/products', productRouter);
+});*/

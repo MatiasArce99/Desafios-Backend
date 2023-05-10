@@ -144,7 +144,7 @@ class ProductManager {
     }
 };
 
-//const productManager = new ProductManager('./productos.json');
+const productManager = new ProductManager('./productos.json');
 
 const test = async () => {
 
