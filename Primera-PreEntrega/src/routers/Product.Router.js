@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import ProductManager from '../ProductManager.js';
+import ProductManager from '../models/ProductManager.js'
 
 const pm = new ProductManager('../productos.json');
 const productRouter = Router();
@@ -41,6 +41,49 @@ productRouter.get('/:id', async (req, res) => {
     } catch (error) {
         
         res.status(400).send(`Hubo un error al encontrar el ID ${error}`);
+    }
+});
+
+productRouter.post('/', async (req,res) => {
+    
+    try {
+        
+        let nuevoProducto = req.body;
+        res.send(await pm.addProduct(nuevoProducto));
+
+    } catch (error) {
+        
+        res.status(400).send(`${error}`);
+
+    }
+});
+
+productRouter.put('/:id', async (req,res) => {
+
+    try {
+        
+        let pid = req.params.id;
+        let nuevoProducto = req.body;
+
+        res.send(await pm.updateProduct(pid, nuevoProducto));
+
+    } catch (error) {
+        
+        res.status(400).send(`${error}`);
+
+    }
+});
+
+productRouter.delete('/:id', async (req,res) => {
+
+    try {
+        
+        let pid = req.params.id;
+        res.send(await pm.deleteProduct(pid));
+
+    } catch (error) {
+        
+        res.status(400).send(`${error}`);
     }
 });
 
