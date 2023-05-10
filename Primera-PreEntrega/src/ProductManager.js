@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-//import { nanoid } from 'nanoid';
 
 class ProductManager {
 
@@ -7,16 +6,8 @@ class ProductManager {
 
     constructor() {
 
-        /*this.path = path;
-        this.producto = [];
-        fs.promises.writeFile(this.path, JSON.stringify(this.producto));*/
         this.path = './src/productos.json';
-        //this.producto = [];
-
-        /*if (!fs.existsSync(this.path)) {
-
-            fs.writeFileSync(this.path, JSON.stringify(this.producto));
-        }*/
+        
     }
 
     #getId() {
@@ -30,53 +21,14 @@ class ProductManager {
         try {
 
             const productosActuales = await this.getProducts();
-            /*let nuevoId = 0;
-
-            if (productosActuales.length > 0) {
-
-                const oldProducts = productosActuales[productosActuales.length - 1];
-                nuevoId = oldProducts.id + 1;
-            }*/
-
-            const nuevoProducto = [ ...productosActuales, producto ];
-            //productosActuales.push(nuevoProducto);
+            
+            const nuevoProducto = [ ...productosActuales, producto ];            
             await fs.promises.writeFile(this.path, JSON.stringify(nuevoProducto));
 
         } catch (error) {
 
         }
     }
-
-    /*async addProduct(producto) {
-
-        try {
-
-            const valores = Object.values(producto);
-            const codigo = this.producto.findIndex(
-                (pro) => pro.code === code
-            );
-
-            if (valores.includes(undefined)) {
-
-                console.log('Los campos deben estar completos');
-                return;
-            } else if (codigo != -1) {
-
-                console.log(`El código ${producto.code} ya existe`);
-                return;
-            } else {
-
-                const actualProducts = await this.getProducts();
-                producto.id = this.#getId();
-                actualProducts.push(producto);
-                await fs.promises.writeFile(this.path, JSON.stringify(actualProducts));
-            }
-
-        } catch (error) {
-
-            console.log(`${error}`);
-        }
-    }*/
 
     async getProducts() {
 
@@ -96,17 +48,8 @@ class ProductManager {
         try {
 
             let productoIndex = await this.getProducts();
-            let filtrado = productoIndex.find((pro) => pro.id === idProducto); //Find busque elemento
-
-            /*if (filtrado === undefined) {
-
-                console.log('Error. El producto no existe');
-
-            } else {
-
-                console.log(`Producto con id ${idProducto}\n`);
-                console.log(filtrado);
-            }*/
+            let filtrado = productoIndex.find((pro) => pro.id === idProducto);
+            
             return filtrado;
 
         } catch (error) {
@@ -128,8 +71,6 @@ class ProductManager {
 
                 productList[productoModificar] = { ...producto, id };
                 await fs.promises.writeFile(this.path, JSON.stringify(productList));
-                //console.log('Listado Actualizado\n');
-                //console.log(productList);
 
             } else {
 
@@ -150,16 +91,6 @@ class ProductManager {
             let filtrado = productoIndex.filter((pro) => pro.id != idProducto); //Filter devuelve array de elementos
             await fs.promises.writeFile(this.path, JSON.stringify(filtrado));
 
-            /*if (filtrado === undefined) {
-
-                console.log('Error. El producto no existe');
-
-            } else {
-
-                console.log(`Se elimina producto con id ${idProducto} \n`);
-                console.log(filtrado);
-            }*/
-
         } catch (error) {
 
             console.log(`${error}`);
@@ -167,136 +98,4 @@ class ProductManager {
     }
 };
 
-//const productManager = new ProductManager('./productos.json');
-
-/*const test = async () => {
-
-    //console.log(await productManager.getProducts());
-
-    /*try {
-
-        await productManager.addProduct({
-
-            title: 'Yerba Mate',
-            description: 'Producto prueba',
-            price: 1000,
-            thumbnail: 'Sin imagen',
-            code: 'abc123',
-            stock: 25
-        });
-
-        await productManager.addProduct({
-
-            title: 'Coca Cola',
-            description: 'Producto prueba',
-            price: 800,
-            thumbnail: 'Sin imagen',
-            code: 'cc111',
-            stock: 50
-        });
-
-        await productManager.addProduct({
-
-            title: 'Arroz primavera',
-            description: 'Producto prueba',
-            price: 350,
-            thumbnail: 'Sin imagen',
-            code: 'ddd22',
-            stock: 40
-        });
-
-        await productManager.addProduct({
-
-            title: 'Puré instantáneo',
-            description: 'Producto prueba',
-            price: 200,
-            thumbnail: 'Sin imagen',
-            code: 'ee777',
-            stock: 50
-        });
-
-        await productManager.addProduct({
-
-            title: 'Atún',
-            description: 'Producto prueba',
-            price: 500,
-            thumbnail: 'Sin imagen',
-            code: 'qq99',
-            stock: 60
-        });
-
-        await productManager.addProduct({
-
-            title: 'Dulce de Leche',
-            description: 'Producto prueba',
-            price: 250,
-            thumbnail: 'Sin imagen',
-            code: 'aa20',
-            stock: 35
-        });
-
-        await productManager.addProduct({
-
-            title: 'Café Instantáneo',
-            description: 'Producto prueba',
-            price: 600,
-            thumbnail: 'Sin imagen',
-            code: 'cx99',
-            stock: 50
-        });
-
-        await productManager.addProduct({
-
-            title: 'Queso Untable',
-            description: 'Producto prueba',
-            price: 350,
-            thumbnail: 'Sin imagen',
-            code: 'pq12',
-            stock: 40
-        });
-
-        await productManager.addProduct({
-
-            title: 'Semillas Pipa',
-            description: 'Producto prueba',
-            price: 200,
-            thumbnail: 'Sin imagen',
-            code: 'xv74',
-            stock: 50
-        });
-
-        await productManager.addProduct({
-
-            title: 'Leche en Polvo',
-            description: 'Producto prueba',
-            price: 900,
-            thumbnail: 'Sin imagen',
-            code: 'ty10',
-            stock: 60
-        });*/
-
-//console.log(await productManager.getProducts());
-
-//await productManager.getProductById(3);
-
-/*await productManager.updateProduct(2, {
-
-    title: 'Coca Cola',
-    description: 'Producto prueba',
-    price: 1000,
-    thumbnail: 'Sin imagen',
-    code: 'cc111',
-    stock: 50
-});
-
-//await productManager.deleteProduct(4);
-
-} catch (error) {
-
-console.log('Algo salió mal');
-}
-}*/
-
 export default ProductManager;
-
-//test();
