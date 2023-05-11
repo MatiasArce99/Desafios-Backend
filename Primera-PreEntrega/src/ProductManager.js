@@ -44,6 +44,7 @@ class ProductManager {
 
         } catch (error) {
 
+            console.log(`Error al agregar producto ${error}`);
         }
     }
 

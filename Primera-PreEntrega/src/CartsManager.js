@@ -1,23 +1,29 @@
 import fs from 'fs';
-import ProductManager from './ProductManager.js';
 
-const listaProductos = new ProductManager();
-
-class CartsManager {
+class CartManager {
 
     constructor() {
 
-        this.path = '.src/carrito.json';
+        this.path = './src/carrito.json';
+        this.producto = [];
+        //fs.promises.writeFile(this.path, JSON.stringify(this.producto));
     }
 
-    #validIdCart = async (id) => {
+    async addCart(producto) {
 
-        let carts = await this.#readFileCarts();
-        return carts.find((cart) => cart.id === id);
+        try {
 
-    };
+            const productList = await this.getProduct();
+            const products = [...productList, producto];
+            await fs.promises.writeFile(this.path, JSON.stringify(products));
 
-    async getCart() {
+        } catch (error) {
+
+            console.log(`Error al agregar producto al carrito ${error}`);
+        }
+    }
+
+    async getProduct() {
 
         try {
 
@@ -26,31 +32,9 @@ class CartsManager {
 
         } catch (error) {
 
-            console.log(`${error}`);
+            console.log(`Error al obtener productos ${error}`);
         }
     }
-
-    async addCart() {
-
-        try {
-
-            const productosActuales = await this.getCart();
-
-            const cart = {
-
-                productos: [],
-
-            };
-
-            productosActuales.push(cart);
-            await fs.promises.writeFile(this.path, JSON.stringify(productosActuales));
-            return productosActuales;
-
-        } catch (error) {
-
-            console.log(`${error}`);
-
-        }
-    }
-    
 }
+
+export default CartManager;

@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Coca Cola",
+        "description": "Producto prueba",
+        "price": 1000,
+        "thumbnail": "Sin imagen",
+        "code": "abc123",
+        "stock": 25
+    },
+    {
+        "title": "Café Instantáneo",
+        "description": "Producto prueba",
+        "price": 600,
+        "thumbnail": "Sin imagen",
+        "code": "cx99",
+        "stock": 50
+    }
+]
