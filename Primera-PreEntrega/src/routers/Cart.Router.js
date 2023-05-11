@@ -17,4 +17,26 @@ cartRouter.post('/', async (req, res) => {
     }
 });
 
+cartRouter.get('/:cid', async (req, res) => {
+
+    try {
+
+        let productoEncontrado = await cm.getProductById(parseInt(req.params.id));
+
+        if (productoEncontrado != undefined) {
+
+            res.send(productoEncontrado);
+
+        } else {
+
+            res.status(400).send('No existe ID');
+
+        }
+    } catch (error) {
+
+        res.status(400).send(`${error}`);
+
+    }
+});
+
 export { cartRouter };

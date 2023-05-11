@@ -35,6 +35,20 @@ class CartManager {
             console.log(`Error al obtener productos ${error}`);
         }
     }
+
+    async getProductById(idProducto){
+
+        try {
+            
+            let productoIndex = await this.getProduct();
+            let filtrado = productoIndex.find((pro) => pro.id === idProducto);
+            return filtrado;
+            
+        } catch (error) {
+            
+            console.log(`Error al encontrar ID del producto ${error}`);
+        }
+    }
 }
 
 export default CartManager;

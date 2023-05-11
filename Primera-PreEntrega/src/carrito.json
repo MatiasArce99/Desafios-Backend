@@ -5,7 +5,8 @@
         "price": 1000,
         "thumbnail": "Sin imagen",
         "code": "abc123",
-        "stock": 25
+        "stock": 25,
+        "id": 2
     },
     {
         "title": "Café Instantáneo",
@@ -13,6 +14,7 @@
         "price": 600,
         "thumbnail": "Sin imagen",
         "code": "cx99",
-        "stock": 50
+        "stock": 50,
+        "id": 7
     }
 ]
