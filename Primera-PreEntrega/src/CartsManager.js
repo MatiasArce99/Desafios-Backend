@@ -1,4 +1,7 @@
 import fs from 'fs';
+import ProductManager from './ProductManager.js';
+
+const pm = new ProductManager();
 
 class CartManager {
 
@@ -23,12 +26,12 @@ class CartManager {
         }
     }
 
-    async getProduct() {
+    async getCart() {
 
         try {
 
-            const actualProducts = await fs.promises.readFile(this.path, 'utf-8');
-            return JSON.parse(actualProducts);
+            const actualCarts = await fs.promises.readFile(this.path, 'utf-8');
+            return JSON.parse(actualCarts);
 
         } catch (error) {
 
@@ -36,17 +39,69 @@ class CartManager {
         }
     }
 
-    async getProductById(idProducto){
+    async getCartById(idCarrito){
 
         try {
             
-            let productoIndex = await this.getProduct();
-            let filtrado = productoIndex.find((pro) => pro.id === idProducto);
+            let carritoIndex = await this.getCart();
+            let filtrado = carritoIndex.find((cart) => cart.id === idCarrito);
             return filtrado;
             
         } catch (error) {
             
             console.log(`Error al encontrar ID del producto ${error}`);
+        }
+    }
+
+    async addProductToCart(cid, pid){
+        //Valida id del carrito y del producto
+        let validCart = await this.validarCarrito(cid);
+
+        if(validCart === undefined){
+
+            console.log('Carrito no encontrado');
+
+        }
+
+        let validProduct = await this.validarProducto();
+
+        if(validProduct === undefined){
+
+            console.log('Producto no encontrado');
+
+        }
+
+        const carrito = await this.getCart();
+        //Listado nuevo sin el carrito seleccionado
+        let cartFilter = await carrito.filter((cart) => cart.id != cid);
+
+        
+    }
+
+    async validarCarrito(idCarrito){
+
+        try {
+            
+            let carritoIndex = await this.getCart();
+            return filtrado = carritoIndex.find((cart) => cart.id === idCarrito);
+
+        } catch (error) {
+            
+            console.log(`Error al encontrar el ID ${error}`);
+
+        }
+    }
+
+    async validarProducto(idProducto){
+
+        try {
+            
+            let products = await pm.getProducts();
+            return await products.find((pro) => pro.id === idProducto);
+
+        } catch (error) {
+            
+            console.log(`Error al encontrar el ID ${error}`);
         }
     }
 }

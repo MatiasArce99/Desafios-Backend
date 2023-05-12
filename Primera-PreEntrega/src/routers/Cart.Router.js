@@ -39,4 +39,15 @@ cartRouter.get('/:cid', async (req, res) => {
     }
 });
 
+cartRouter.post('/:cid/product/:pid', async (req, res) => {
+
+    try {
+        
+    } catch (error) {
+        
+        res.status(400).send(`${error}`);
+        
+    }
+})
+
 export { cartRouter };
