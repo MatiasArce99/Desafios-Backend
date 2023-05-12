@@ -74,8 +74,30 @@ class CartManager {
         const carrito = await this.getCart();
         //Listado nuevo sin el carrito seleccionado
         let cartFilter = await carrito.filter((cart) => cart.id != cid);
-
         
+        if(validCart.products.some((pro) => pro.id === pid)){
+            //Se comprueba que el producto está en el carrito
+            let productExist = validCart.products.find(
+                (pro) => pro.id === pid
+            );
+
+            productExist.quantity++; //Le suma a la propiedad quantity 1
+            //Integra el nuevo array con el carrito modificado y el resto
+            let newCart = [validCart, ...cartFilter];
+            fs.promises.writeFile(this.path, JSON.stringify(newCart));
+
+        } else {
+            //Si no está el producto lo agrega e inicializa la propiedad quanty
+            validCart.products.push({
+                id: validProduct.id,
+                quantity: 1
+            });
+
+            let newCart = [validCart, ...cartFilter];
+            fs.promises.writeFile(this.path, JSON.stringify(newCart));
+            return 'Producto agregado al carrito';
+            
+        }
     }
 
     async validarCarrito(idCarrito){

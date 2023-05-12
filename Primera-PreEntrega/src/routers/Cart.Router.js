@@ -43,6 +43,10 @@ cartRouter.post('/:cid/product/:pid', async (req, res) => {
 
     try {
         
+        const cid = req.params.cid;
+        const pid = req.params.pid;
+        res.status(201).send(await cm.addProductToCart(cid, pid));
+        
     } catch (error) {
         
         res.status(400).send(`${error}`);
