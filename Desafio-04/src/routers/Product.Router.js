@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { listadoProductos } from '../utils/instancias.js';
 import {io} from '../utils/socket.js'
 
-//const pm = new ProductManager();
 const productRouter = Router();
 
 productRouter.get('/', async (req, res) => {

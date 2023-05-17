@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-//import { nanoid } from 'nanoid';
 
 class ProductManager {
 
@@ -8,16 +7,7 @@ class ProductManager {
 
     constructor() {
 
-        /*this.path = path;
-        this.producto = [];
-        fs.promises.writeFile(this.path, JSON.stringify(this.producto));*/
         this.path = '../src/productos.json';
-        //this.producto = [];
-
-        /*if (!fs.existsSync(this.path)) {
-
-            fs.writeFileSync(this.path, JSON.stringify(this.producto));
-        }*/
     }
 
     #getId() {
@@ -31,16 +21,10 @@ class ProductManager {
         try {
 
             const productosActuales = await this.getProducts();
-            /*let nuevoId = 0;
-
-            if (productosActuales.length > 0) {
-
-                const oldProducts = productosActuales[productosActuales.length - 1];
-                nuevoId = oldProducts.id + 1;
-            }*/
+            
 
             const nuevoProducto = [ ...productosActuales, producto ];
-            //productosActuales.push(nuevoProducto);
+           
             await fs.promises.writeFile(this.path, JSON.stringify(nuevoProducto));
 
         } catch (error) {

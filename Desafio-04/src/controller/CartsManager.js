@@ -3,13 +3,12 @@ import ProductManager from './ProductManager.js';
 
 const pm = new ProductManager();
 
-class CartManager {
+export default class CartsManager {
 
     constructor() {
 
         this.path = '../src/carrito.json';
         this.producto = [];
-        //fs.promises.writeFile(this.path, JSON.stringify(this.producto));
     }
 
     async addCart(producto) {
@@ -54,7 +53,7 @@ class CartManager {
     }
 
     async addProductToCart(cid, pid){
-        //Valida id del carrito y del producto
+        
         let validCart = await this.validarCarrito(cid);
 
         if(validCart === undefined){
@@ -72,22 +71,21 @@ class CartManager {
         }
 
         const carrito = await this.getCart();
-        //Listado nuevo sin el carrito seleccionado
+        
         let cartFilter = await carrito.filter((cart) => cart.id != cid);
         
         if(validCart.products.some((pro) => pro.id === pid)){
-            //Se comprueba que el producto está en el carrito
+            
             let productExist = validCart.products.find(
                 (pro) => pro.id === pid
             );
 
-            productExist.quantity++; //Le suma a la propiedad quantity 1
-            //Integra el nuevo array con el carrito modificado y el resto
+            productExist.quantity++;
             let newCart = [validCart, ...cartFilter];
             fs.promises.writeFile(this.path, JSON.stringify(newCart));
 
         } else {
-            //Si no está el producto lo agrega e inicializa la propiedad quanty
+            
             validCart.products.push({
                 id: validProduct.id,
                 quantity: 1
@@ -127,5 +125,3 @@ class CartManager {
         }
     }
 }
-
-export default CartManager;
