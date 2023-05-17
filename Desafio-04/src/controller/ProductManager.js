@@ -11,7 +11,7 @@ class ProductManager {
         /*this.path = path;
         this.producto = [];
         fs.promises.writeFile(this.path, JSON.stringify(this.producto));*/
-        this.path = './src/productos.json';
+        this.path = '../src/productos.json';
         //this.producto = [];
 
         /*if (!fs.existsSync(this.path)) {

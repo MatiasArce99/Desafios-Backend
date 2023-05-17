@@ -7,7 +7,7 @@ class CartManager {
 
     constructor() {
 
-        this.path = './src/carrito.json';
+        this.path = '../src/carrito.json';
         this.producto = [];
         //fs.promises.writeFile(this.path, JSON.stringify(this.producto));
     }
