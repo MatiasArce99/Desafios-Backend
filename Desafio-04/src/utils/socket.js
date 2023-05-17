@@ -1,6 +1,7 @@
 import express from 'express';
-import http, { Server } from 'http';
-import { listadoProductos } from '../public/instancias.js';
+import { Server } from 'socket.io';
+import http from 'http';
+import { listadoProductos } from './instancias.js';
 
 export const app = express();
 export const server = http.createServer(app);
@@ -15,5 +16,5 @@ io.on('connection', async (socket) => {
     socket.on('disconnect', () => {
 
         console.log('Cliente desconectado');
-    })
-})
+    });
+});

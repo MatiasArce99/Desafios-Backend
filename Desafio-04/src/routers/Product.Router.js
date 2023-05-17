@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import ProductManager from '../controller/ProductManager.js';
+import { listadoProductos } from '../utils/instancias.js';
+import {io} from '../utils/socket.js'
 
-const pm = new ProductManager();
+//const pm = new ProductManager();
 const productRouter = Router();
 
 productRouter.get('/', async (req, res) => {
 
-    let listado = await pm.getProducts();
+    let listado = await listadoProductos.getProducts();
     let limite = req.query.limit;
 
     if (limite) {
@@ -25,7 +26,7 @@ productRouter.get('/:id', async (req, res) => {
 
     try {
 
-        let productoEncontrado = await pm.getProductById(parseInt(req.params.id));
+        let productoEncontrado = await listadoProductos.getProductById(parseInt(req.params.id));
 
         if (productoEncontrado != undefined) {
 
@@ -48,7 +49,8 @@ productRouter.post('/', async (req, res) => {
     try {
 
         let nuevoProducto = req.body;
-        res.send(await pm.addProduct(nuevoProducto));
+        res.send(await listadoProductos.addProduct(nuevoProducto));
+        io.emit('product_list_updated', await listadoProductos.getProducts());
 
     } catch (error) {
 
@@ -64,7 +66,7 @@ productRouter.put('/:id', async (req, res) => {
         let pid = req.params.id;
         let nuevoProducto = req.body;
 
-        res.send(await pm.updateProduct(pid, nuevoProducto));
+        res.send(await listadoProductos.updateProduct(pid, nuevoProducto));
 
     } catch (error) {
 
@@ -78,7 +80,8 @@ productRouter.delete('/:id', async (req, res) => {
     try {
 
         let pid = req.params.id;
-        res.send(await pm.deleteProduct(pid));
+        res.send(await listadoProductos.deleteProduct(pid));
+        io.emit('product_list_updated', await listadoProductos.getProducts());
 
     } catch (error) {
 
