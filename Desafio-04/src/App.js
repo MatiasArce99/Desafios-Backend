@@ -6,7 +6,7 @@ import productRouter from './routers/Product.Router.js';
 import viewsRouter from './routers/views.router.js';
 //import { productRouter } from './routers/Product.Router.js';
 
-const app = express();
+//const app = express();
 
 app.use(express.json);
 app.use(express.urlencoded({ extended: true }));
