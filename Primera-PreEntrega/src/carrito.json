@@ -1,20 +1,14 @@
 [
     {
-        "title": "Coca Cola",
-        "description": "Producto prueba",
-        "price": 1000,
-        "thumbnail": "Sin imagen",
-        "code": "abc123",
-        "stock": 25,
-        "id": 2
+        "id": 1685147022242,
+        "products": []
     },
     {
-        "title": "Café Instantáneo",
-        "description": "Producto prueba",
-        "price": 600,
-        "thumbnail": "Sin imagen",
-        "code": "cx99",
-        "stock": 50,
-        "id": 7
+        "id": 1685147018036,
+        "products": []
+    },
+    {
+        "id": 1685144331054,
+        "products": []
     }
 ]
