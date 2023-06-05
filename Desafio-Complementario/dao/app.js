@@ -2,7 +2,11 @@ import express from 'express';
 import handlebars from 'express-handlebars';
 import mongoose from 'mongoose';
 import productRouter from './routes/product.router.js';
+<<<<<<< HEAD
 import cartRouter from './routes/cart.router.js'
+=======
+import cartRouter from './routes/cart.router.js';
+>>>>>>> 46578b262ff7161c6d83f28a05417ef11580e709
 import viewRouter from './routes/view.router.js';
 import { Server } from 'socket.io';
 
