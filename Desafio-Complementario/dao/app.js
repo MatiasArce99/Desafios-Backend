@@ -2,6 +2,7 @@ import express from 'express';
 import handlebars from 'express-handlebars';
 import mongoose from 'mongoose';
 import productRouter from './routes/product.router.js';
+import cartRouter from './routes/cart.router.js';
 import viewRouter from './routes/view.router.js';
 import { Server } from 'socket.io';
 
@@ -16,6 +17,7 @@ app.set('views', 'views/');
 app.set('view engine', 'handlebars');
 
 app.use('/api/products', productRouter);
+app.use('/api/carts', cartRouter);
 app.use('/', viewRouter);
 
 mongoose.connect('mongodb+srv://matiasarce214:123@ecommerce.lmtrfb7.mongodb.net/?retryWrites=true&w=majority');
