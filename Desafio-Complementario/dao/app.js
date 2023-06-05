@@ -19,6 +19,7 @@ app.set('view engine', 'handlebars');
 app.use('/api/products', productRouter);
 app.use('/api/carts', cartRouter);
 app.use('/', viewRouter);
+app.use(express.static('public'));
 
 mongoose.connect('mongodb+srv://matiasarce214:123@ecommerce.lmtrfb7.mongodb.net/?retryWrites=true&w=majority');
 
