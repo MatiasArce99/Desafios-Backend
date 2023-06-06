@@ -70,8 +70,6 @@ export default class Producto {
             const index = productosActuales.filter((pro) => pro.id != idProducto);
             await fs.promises.writeFile(this.path, JSON.stringify(index));
 
-            //console.log(index);
-
         } catch (error) {
 
             console.log(`${error}`);
@@ -92,8 +90,6 @@ export default class Producto {
 
                 productosActuales[productoModificar] = { ...producto, id };
                 await fs.promises.writeFile(this.path, JSON.stringify(productosActuales));
-                /*console.log('Listado Actualizado\n');
-                console.log(productosActuales);*/
 
             } else {
 

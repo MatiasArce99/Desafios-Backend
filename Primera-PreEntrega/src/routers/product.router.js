@@ -64,7 +64,7 @@ productoRouter.put('/:pid', async (req, res) => {
 
         let pid = req.params.pid;
         let nuevoProducto = req.body;
-        res.send(await p.actualizarProducto(pid, nuevoProducto));
+        res.send(await p.actualizarProducto(parseInt(pid), nuevoProducto));
 
     } catch (error) {
 
@@ -77,7 +77,7 @@ productoRouter.delete('/:pid', async (req, res) => {
     try {
         
         let pid = req.params.pid;
-        res.send(await p.eliminarProducto(pid));
+        res.send(await p.eliminarProducto(parseInt(pid)));
         
     } catch (error) {
         
