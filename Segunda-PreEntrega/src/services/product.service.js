@@ -1,4 +1,4 @@
-import { productModel } from '../models/product.model';
+import { productModel } from '../models/product.model.js';
 
 class ProductService {
 
@@ -22,13 +22,13 @@ class ProductService {
 
     async removeProduct(idProduct) {
 
-        return await this.model.deleteOne({ id: idProduct });
+        return await this.model.deleteOne({ _id: idProduct });
 
     }
 
     async getProductById(idProduct) {
 
-        return await this.model.findOne({ id: idProduct });
+        return await this.model.findOne({ _id: idProduct });
 
     }
 }
