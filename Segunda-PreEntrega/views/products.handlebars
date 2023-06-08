@@ -1,0 +1,67 @@
+<div class='row'>
+
+    <div class='col-md-8'>
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th scope='col'>ID</th>
+                    <th scope='col'>Title</th>
+                    <th scope='col'>Description</th>
+                    <th scope='col'>Price</th>
+                    <th scope='col'>Code</th>
+                    <th scope='col'>thumbail</th>
+                    <th scope='col'>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <th scope='row'>{{this._id}}</th>
+                    <td>{{this.title}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.price}}</td>
+                    <td>{{this.code}}</td>
+                    <td>{{this.thumbail}}</td>
+                    <td>{{this.stock}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class='col-md-4'>
+        <h2>Agregar Producto</h2>
+        <form action='/api/products' method='post'>
+            <div class='row'>
+                <div class='col-6'>
+                    <input type='text' class='form-control' placeholder='Nombre' aria-label='Nombre' name='name' />
+                </div>
+                <div class='col-6'>
+                    <input type='text' class='form-control' placeholder='Descripción' aria-label='Descripción'
+                        name='description' />
+                </div>
+                <div class='col-6'>
+                    <input type='text' class='form-control' placeholder='Precio' aria-label='Precio' name='price' />
+                </div>
+                <div class='col-6'>
+                    <input type='text' class='form-control' placeholder='Código'
+                        aria-label='Código' name='code' />
+                </div>
+                <div class='col-6'>
+                    <input type='text' class='form-control' placeholder='Imagen'
+                        aria-label='Imagen' name='thumbail' />
+                </div>
+                <div class='col-6'>
+                    <input type='text' class='form-control' placeholder='Stock'
+                        aria-label='Stock' name='stock' />
+                </div>
+                <div class='col-12'>
+                    <button type='submit' class='form-control'>
+                        Agregar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+</div>
