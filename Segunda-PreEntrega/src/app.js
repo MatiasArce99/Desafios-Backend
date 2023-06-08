@@ -16,7 +16,7 @@ app.set('views', 'views/');
 app.set('view engine', 'handlebars');
 
 app.use('/api/products', productRouter);
-app.use('/', viewRouter);
+//app.use('/', viewRouter);
 
 mongoose.connect('mongodb+srv://matiasarce214:123@manager.tfxbp8u.mongodb.net/?retryWrites=true&w=majority');
 
