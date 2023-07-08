@@ -1,36 +1,11 @@
-import { productModel } from '../models/product.model.js';
+import mongoose from 'mongoose';
+import productModel from '../models/product.model.js';
+import products from '../data/productos.json' assert { type: 'json' };
 
-class ProductService {
+await mongoose.connect(
+    'mongodb+srv://matiasarce214:123@manager.tfxbp8u.mongodb.net/?retryWrites=true&w=majority'
+);
 
-    constructor() {
+const result = await productModel.insertMany(products);
 
-        this.model = productModel;
-
-    }
-
-    async getAllProducts() {
-
-        return await this.model.find().lean();
-
-    }
-
-    async addProduct(product) {
-
-        return await this.model.create(product);
-
-    }
-
-    async removeProduct(idProduct) {
-
-        return await this.model.deleteOne({ _id: idProduct });
-
-    }
-
-    async getProductById(idProduct) {
-
-        return await this.model.findOne({ _id: idProduct });
-
-    }
-}
-
-export const productService = new ProductService();
+console(result);
