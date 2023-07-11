@@ -8,7 +8,7 @@ class ProductService {
 
     }
 
-    async getAll(){
+    async getProducts(){
 
         return await this.model.find();
 
