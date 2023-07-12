@@ -1,6 +1,8 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
-import mongoose, { connect } from 'mongoose';
+import mongoose from 'mongoose';
+import productRouter from './routes/product.router.js';
+import viewsRouter from './routes/views.router.js';
 
 const app = express();
 
@@ -12,6 +14,9 @@ app.set('views', 'views/');
 app.set('view engine', 'handlebars');
 
 app.set(express.static('public'));
+
+app.use('/api/products', productRouter);
+app.use('/', viewsRouter);
 
 mongoose.connect(
 

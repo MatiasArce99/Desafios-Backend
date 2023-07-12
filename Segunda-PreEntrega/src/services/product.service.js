@@ -8,7 +8,7 @@ class ProductService {
 
     }
 
-    async getProducts(){
+    async getProducts(limit = 10000, page = 1){
 
         return await this.model.find();
 
